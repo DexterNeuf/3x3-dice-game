@@ -4,8 +4,6 @@ function DiceBoard(props) {
   const [isActive, setActive] = useState('true');
   const [lastHovered, setLastHovered] = useState('0');
 
-  // const [diceNumber, setDice] = useState(props.diceNumber);
-
   const handleMouseOver = (e) => {
     let selectedRow = e.target.parentElement.id;
     if (selectedRow) {
@@ -40,7 +38,31 @@ function DiceBoard(props) {
       }
     }
   };
-
+  const IsPlayerDiv = (props) => {
+    return (
+      <div
+        style={{
+          backgroundColor: 'red',
+          backgroundColor:
+            props.playerTurn && props.diceRolled ? 'green' : 'red',
+          width: '50px',
+          height: '50px',
+        }}
+      ></div>
+    );
+  };
+  const IsNotPlayerDiv = (props) => {
+    return (
+      <div
+        style={{
+          backgroundColor:
+            !props.playerTurn && props.diceRolled ? 'green' : 'red',
+          width: '50px',
+          height: '50px',
+        }}
+      ></div>
+    );
+  };
   const handleMouseOut = (e) => {
     if (lastHovered === 'row1') {
       let obj = row1.find((o) => o.isHovered === true);
@@ -57,48 +79,6 @@ function DiceBoard(props) {
         );
       }
     }
-  };
-
-  const addDiceToRow = (rowNum) => {
-    changeDiceValue(
-      row1.map((x) => {
-        if (x.position === rowNum) {
-          x.value = props.diceNumber;
-          x.isFilled = true;
-        }
-        return { ...x };
-      })
-    );
-    let changedTurn = !props.isActive;
-    props.changeTurn(changedTurn);
-  };
-
-  const addDiceToRow2 = (rowNum) => {
-    changeDiceValue2(
-      row2.map((x) => {
-        if (x.position === rowNum) {
-          x.value = props.diceNumber;
-          x.isFilled = true;
-        }
-        return { ...x };
-      })
-    );
-    let changedTurn = !props.isActive;
-    props.changeTurn(changedTurn);
-  };
-
-  const addDiceToRow3 = (rowNum) => {
-    changeDiceValue3(
-      row3.map((x) => {
-        if (x.position === rowNum) {
-          x.value = props.diceNumber;
-          x.isFilled = true;
-        }
-        return { ...x };
-      })
-    );
-    let changedTurn = !props.isActive;
-    props.changeTurn(changedTurn);
   };
 
   const [row1, changeDiceValue] = useState([
@@ -159,70 +139,134 @@ function DiceBoard(props) {
       }
     }
   };
+  const addDiceToRow = (rowNum) => {
+    changeDiceValue(
+      row1.map((x) => {
+        if (x.position === rowNum) {
+          x.value = props.diceNumber;
+          x.isFilled = true;
+        }
+        return { ...x };
+      })
+    );
+    let changedTurn = !props.isActive;
+    props.changeTurn(changedTurn);
+  };
+
+  const addDiceToRow2 = (rowNum) => {
+    changeDiceValue2(
+      row2.map((x) => {
+        if (x.position === rowNum) {
+          x.value = props.diceNumber;
+          x.isFilled = true;
+        }
+        return { ...x };
+      })
+    );
+    let changedTurn = !props.isActive;
+    props.changeTurn(changedTurn);
+  };
+
+  const addDiceToRow3 = (rowNum) => {
+    changeDiceValue3(
+      row3.map((x) => {
+        if (x.position === rowNum) {
+          x.value = props.diceNumber;
+          x.isFilled = true;
+        }
+        return { ...x };
+      })
+    );
+    let changedTurn = !props.isActive;
+    props.changeTurn(changedTurn);
+  };
+  console.log(props);
   return (
-    <div className="player-board">
-      <div className={`player-row`}>
-        <container
-          id="row1"
-          className={`player-row ${isActive ? 'hoverable' : ''}`}
-          onClick={addDice1}
-          onMouseEnter={handleMouseOver}
-          onMouseOut={handleMouseOut}
-        >
-          <div>
-            <p>{row1[2].value}</p>
-          </div>
-          <div>
-            <p>{row1[1].value}</p>
-          </div>
+    <div>
+      <div
+        className="player-board"
+        style={{
+          filter:
+            props.playerTurn === false
+              ? 'grayscale(50%) blur(5px)'
+              : 'grayscale(0%)',
+        }}
+      >
+        <h1></h1>
+        <div className={`player-row`}>
+          <container
+            id="row1"
+            className={`player-row ${isActive ? 'hoverable' : ''}`}
+            onClick={addDice1}
+            onMouseEnter={handleMouseOver}
+            onMouseOut={handleMouseOut}
+          >
+            <div>
+              <p>{row1[2].value}</p>
+            </div>
+            <div>
+              <p>{row1[1].value}</p>
+            </div>
 
-          {row1[0].isFilled === true || row1[0].isHovered === true ? (
-            <div className={`dice${props.diceNumber}`}></div>
-          ) : (
-            <div>{row1[0].value}</div>
-          )}
-        </container>
-      </div>
-      <div className={`player-row`}>
-        <container
-          id="row2"
-          className={`player-row ${isActive ? 'hoverable' : ''}`}
-          onClick={addDice2}
-          // onMouseEnter={handleMouseOver}
-          // onMouseOut={handleMouseOut}
-        >
-          <div>
-            <p>{row2[2].value}</p>
-          </div>
-          <div>
-            <p>{row2[1].value}</p>
-          </div>
+            {row1[0].isFilled === true || row1[0].isHovered === true ? (
+              <div className={`dice${props.diceNumber}`}></div>
+            ) : (
+              <div>{row1[0].value}</div>
+            )}
+          </container>
+        </div>
+        <div className={`player-row`}>
+          <container
+            id="row2"
+            className={`player-row ${isActive ? 'hoverable' : ''}`}
+            onClick={addDice2}
+            // onMouseEnter={handleMouseOver}
+            // onMouseOut={handleMouseOut}
+          >
+            <div>
+              <p>{row2[2].value}</p>
+            </div>
+            <div>
+              <p>{row2[1].value}</p>
+            </div>
 
-          {row2[0].isFilled === true || row2[0].isHovered === true ? (
-            <div className={`dice${props.diceNumber}`}></div>
-          ) : (
-            <div>{row2[0].value}</div>
-          )}
-        </container>
+            {row2[0].isFilled === true || row2[0].isHovered === true ? (
+              <div className={`dice${props.diceNumber}`}></div>
+            ) : (
+              <div>{row2[0].value}</div>
+            )}
+          </container>
+        </div>
+        <div className={`player-row`}>
+          <container
+            id="row3"
+            className={`player-row ${isActive ? 'hoverable' : ''}`}
+            onClick={addDice3}
+            onMouseOver={handleMouseOver}
+          >
+            <div>
+              <p>{row3[2].value}</p>
+            </div>
+            <div>
+              <p>{row3[1].value}</p>
+            </div>
+            <div>
+              <p>{row3[0].value}</p>
+            </div>
+          </container>
+        </div>
       </div>
-      <div className={`player-row`}>
-        <container
-          id="row3"
-          className={`player-row ${isActive ? 'hoverable' : ''}`}
-          onClick={addDice3}
-          onMouseOver={handleMouseOver}
-        >
-          <div>
-            <p>{row3[2].value}</p>
-          </div>
-          <div>
-            <p>{row3[1].value}</p>
-          </div>
-          <div>
-            <p>{row3[0].value}</p>
-          </div>
-        </container>
-      </div>
+      {props.isPlayer ? (
+        <IsPlayerDiv
+          playerTurn={props.playerTurn}
+          diceRolled={props.diceRolled}
+        />
+      ) : (
+        <IsNotPlayerDiv
+          playerTurn={props.playerTurn}
+          diceRolled={props.diceRolled}
+        />
+      )}
     </div>
   );
 }

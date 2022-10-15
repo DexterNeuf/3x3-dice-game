@@ -33,12 +33,14 @@ function Game() {
             changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
             playerTurn={isPlayerTurn}
             diceRolled={isDiceRolled}
+            isPlayer={true}
           />
           <DiceBoard
             diceNumber={diceNumber}
             changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
             playerTurn={isPlayerTurn}
             diceRolled={isDiceRolled}
+            isPlayer={false}
           />
         </div>
       </fieldset>
