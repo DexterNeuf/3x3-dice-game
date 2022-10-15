@@ -73,6 +73,34 @@ function DiceBoard(props) {
     props.changeTurn(changedTurn);
   };
 
+  const addDiceToRow2 = (rowNum) => {
+    changeDiceValue2(
+      row2.map((x) => {
+        if (x.position === rowNum) {
+          x.value = props.diceNumber;
+          x.isFilled = true;
+        }
+        return { ...x };
+      })
+    );
+    let changedTurn = !props.isActive;
+    props.changeTurn(changedTurn);
+  };
+
+  const addDiceToRow3 = (rowNum) => {
+    changeDiceValue3(
+      row3.map((x) => {
+        if (x.position === rowNum) {
+          x.value = props.diceNumber;
+          x.isFilled = true;
+        }
+        return { ...x };
+      })
+    );
+    let changedTurn = !props.isActive;
+    props.changeTurn(changedTurn);
+  };
+
   const [row1, changeDiceValue] = useState([
     { value: 0, isFilled: false, isHovered: false, position: '1.0' },
     { value: 0, isFilled: false, isHovered: false, position: '1.1' },
@@ -84,9 +112,9 @@ function DiceBoard(props) {
     { value: 0, isFilled: false, isHovered: false, position: '2.2' },
   ]);
   const [row3, changeDiceValue3] = useState([
+    { value: 0, isFilled: false, position: '3.0' },
     { value: 0, isFilled: false, position: '3.1' },
     { value: 0, isFilled: false, position: '3.2' },
-    { value: 0, isFilled: false, position: '3.3' },
   ]);
 
   const addDice1 = (e) => {
@@ -107,36 +135,11 @@ function DiceBoard(props) {
     let currentRow = e.target.parentElement.id;
     if (currentRow === 'row2') {
       if (row2[0].isFilled === false) {
-        changeDiceValue2(
-          row2.map((x) => {
-            if (x.position === '2.0') {
-              x.value = props.diceNumber;
-              x.isFilled = true;
-            }
-            return { ...x };
-          })
-        );
+        addDiceToRow2('2.0');
       } else if (row2[1].isFilled === false) {
-        changeDiceValue2(
-          row2.map((x) => {
-            if (x.position === '2.1') {
-              x.value = props.diceNumber;
-              x.isFilled = true;
-            }
-            return { ...x };
-          })
-        );
+        addDiceToRow2('2.1');
       } else if (row2[2].isFilled === false) {
-        changeDiceValue2(
-          row2.map((x) => {
-            if (x.position === '2.2') {
-              x.value = props.diceNumber;
-              x.isFilled = true;
-            }
-            return { ...x };
-          })
-        );
-        setActive(!isActive);
+        addDiceToRow2('2.2');
       } else {
         return;
       }
@@ -146,36 +149,11 @@ function DiceBoard(props) {
     let currentRow = e.target.parentElement.id;
     if (currentRow === 'row3') {
       if (row3[0].isFilled === false) {
-        changeDiceValue3(
-          row3.map((x) => {
-            if (x.position === '3.1') {
-              x.value = props.diceNumber;
-              x.isFilled = true;
-            }
-            return { ...x };
-          })
-        );
+        addDiceToRow3('3.0');
       } else if (row3[1].isFilled === false) {
-        changeDiceValue3(
-          row3.map((x) => {
-            if (x.position === '3.2') {
-              x.value = props.diceNumber;
-              x.isFilled = true;
-            }
-            return { ...x };
-          })
-        );
+        addDiceToRow3('3.1');
       } else if (row3[2].isFilled === false) {
-        changeDiceValue3(
-          row3.map((x) => {
-            if (x.position === '3.3') {
-              x.value = props.diceNumber;
-              x.isFilled = true;
-            }
-            return { ...x };
-          })
-        );
-        setActive(!isActive);
+        addDiceToRow3('3.2');
       } else {
         return;
       }

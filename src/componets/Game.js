@@ -26,13 +26,22 @@ function Game() {
           isRolled={isDiceRolled}
         />
       </fieldset>
-      <div className="dice-board">
+      <fieldset
+        className={`dice-board`}
+        style={{
+          filter:
+            isDiceRolled === false
+              ? 'grayscale(50%) blur(5px)'
+              : 'grayscale(0%)',
+          disabled: isDiceRolled === false ? 'none' : 'disabled',
+        }}
+      >
         <DiceBoard
           diceNumber={diceNumber}
           changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
           isActive={isPlayerTurn}
         />
-      </div>
+      </fieldset>
       <fieldset
         disabled={isPlayerTurn}
         className="oppenent-space"
