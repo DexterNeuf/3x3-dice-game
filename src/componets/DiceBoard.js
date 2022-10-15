@@ -160,87 +160,68 @@ function DiceBoard(props) {
     }
   };
   return (
-    <div className="dice-board">
-      <div className="player-board">
-        <div className={`player-row`}>
-          <container
-            id="row1"
-            className={`player-row ${isActive ? 'hoverable' : ''}`}
-            onClick={addDice1}
-            onMouseEnter={handleMouseOver}
-            onMouseOut={handleMouseOut}
-          >
-            <div>
-              <p>{row1[2].value}</p>
-            </div>
-            <div>
-              <p>{row1[1].value}</p>
-            </div>
+    <div className="player-board">
+      <div className={`player-row`}>
+        <container
+          id="row1"
+          className={`player-row ${isActive ? 'hoverable' : ''}`}
+          onClick={addDice1}
+          onMouseEnter={handleMouseOver}
+          onMouseOut={handleMouseOut}
+        >
+          <div>
+            <p>{row1[2].value}</p>
+          </div>
+          <div>
+            <p>{row1[1].value}</p>
+          </div>
 
-            {row1[0].isFilled === true || row1[0].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
-            ) : (
-              <div>{row1[0].value}</div>
-            )}
-          </container>
-        </div>
-        <div className={`player-row`}>
-          <container
-            id="row2"
-            className={`player-row ${isActive ? 'hoverable' : ''}`}
-            onClick={addDice2}
-            // onMouseEnter={handleMouseOver}
-            // onMouseOut={handleMouseOut}
-          >
-            <div>
-              <p>{row2[2].value}</p>
-            </div>
-            <div>
-              <p>{row2[1].value}</p>
-            </div>
-
-            {row2[0].isFilled === true || row2[0].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
-            ) : (
-              <div>{row2[0].value}</div>
-            )}
-          </container>
-        </div>
-        <div className={`player-row`}>
-          <container
-            id="row3"
-            className={`player-row ${isActive ? 'hoverable' : ''}`}
-            onClick={addDice3}
-            onMouseOver={handleMouseOver}
-          >
-            <div>
-              <p>{row3[2].value}</p>
-            </div>
-            <div>
-              <p>{row3[1].value}</p>
-            </div>
-            <div>
-              <p>{row3[0].value}</p>
-            </div>
-          </container>
-        </div>
+          {row1[0].isFilled === true || row1[0].isHovered === true ? (
+            <div className={`dice${props.diceNumber}`}></div>
+          ) : (
+            <div>{row1[0].value}</div>
+          )}
+        </container>
       </div>
-      <div className="player-board">
-        <div className="player-row">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div className="player-row">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div className="player-row">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+      <div className={`player-row`}>
+        <container
+          id="row2"
+          className={`player-row ${isActive ? 'hoverable' : ''}`}
+          onClick={addDice2}
+          // onMouseEnter={handleMouseOver}
+          // onMouseOut={handleMouseOut}
+        >
+          <div>
+            <p>{row2[2].value}</p>
+          </div>
+          <div>
+            <p>{row2[1].value}</p>
+          </div>
+
+          {row2[0].isFilled === true || row2[0].isHovered === true ? (
+            <div className={`dice${props.diceNumber}`}></div>
+          ) : (
+            <div>{row2[0].value}</div>
+          )}
+        </container>
+      </div>
+      <div className={`player-row`}>
+        <container
+          id="row3"
+          className={`player-row ${isActive ? 'hoverable' : ''}`}
+          onClick={addDice3}
+          onMouseOver={handleMouseOver}
+        >
+          <div>
+            <p>{row3[2].value}</p>
+          </div>
+          <div>
+            <p>{row3[1].value}</p>
+          </div>
+          <div>
+            <p>{row3[0].value}</p>
+          </div>
+        </container>
       </div>
     </div>
   );
