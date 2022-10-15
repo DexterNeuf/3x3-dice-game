@@ -1,0 +1,255 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.Game {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+.player-space,
+.oppenent-space {
+  /* display: none; */
+  width: 25%;
+  background-color: bisque;
+}
+.dice-board {
+  width: 100%;
+  background-color: lightgray;
+  cursor: url(../../public/./full-size-dice/dice-test.svg), auto;
+  margin: 0 auto;
+}
+.dice-container {
+  text-align: center;
+}
+
+.dice-rolling-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  min-height: 220px;
+  margin: 10px auto;
+  background-color: white;
+}
+
+.player-board {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.player-board > .player-row {
+  flex: 33.32%;
+  text-align: center;
+}
+
+.player-row > div {
+  box-sizing: border-box;
+  background-color: white;
+  margin: 10px auto;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+}
+
+.hoverable:hover > div {
+  border: red 2px solid;
+}
+container {
+  box-sizing: border-box;
+  display: inline-block;
+  width: auto;
+  margin: 0;
+}
+.dice1 {
+  margin: 0 auto;
+  background-image: url(../../public/./cursor-dice/dice1.svg);
+  background-position: center;
+  width: 128px;
+  height: 128px;
+  background-repeat: no-repeat;
+  border-radius: 10%;
+  background-size: 90%;
+}
+.dice2 {
+  margin: 0 auto;
+  background-image: url(../../public/./full-size-dice/dice2.svg);
+  background-position: center;
+  width: 128px;
+  height: 128px;
+  background-repeat: no-repeat;
+  border-radius: 10%;
+  background-size: 90%;
+}
+
+.dice3 {
+  margin: 0 auto;
+  background-image: url(../../public/./full-size-dice/dice3.svg);
+  background-position: center;
+  width: 128px;
+  height: 128px;
+  background-repeat: no-repeat;
+  border-radius: 10%;
+  background-size: 90%;
+}
+.dice4 {
+  margin: 0 auto;
+  background-image: url(../../public/./full-size-dice/dice4.svg);
+  background-position: center;
+  width: 128px;
+  height: 128px;
+  background-repeat: no-repeat;
+  border-radius: 10%;
+  background-size: 90%;
+}
+.dice5 {
+  margin: 0 auto;
+  background-image: url(../../public/./full-size-dice/dice5.svg);
+  background-position: center;
+  width: 128px;
+  height: 128px;
+  background-repeat: no-repeat;
+  border-radius: 10%;
+  background-size: 90%;
+}
+
+.dice6 {
+  margin: 0 auto;
+  background-image: url(../../public/./full-size-dice/dice6.svg);
+  background-position: center;
+  width: 128px;
+  height: 128px;
+  background-repeat: no-repeat;
+  border-radius: 10%;
+  background-size: 90%;
+}
+p {
+  display: inline-block;
+}
+
+dice-roll-box {
+  max-width: 138px;
+  max-height: 138px;
+}
