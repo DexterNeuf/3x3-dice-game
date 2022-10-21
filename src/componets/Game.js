@@ -1,11 +1,19 @@
 import DiceRolling from './DiceRolling';
 import DiceBoard from './DiceBoard';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Game() {
   const [diceNumber, passDice] = useState(1);
   const [isPlayerTurn, changeTurn] = useState(true);
   const [isDiceRolled, diceRolled] = useState(false);
+  const [playerBoardValues, changePBV] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [opponentBoardValues, changeOBV] = useState([
+    0, 0, 0, 0, 0, 0, 0, 0, 0,
+  ]);
+
+  useEffect(() => {
+    console.log('bamna');
+  }, [playerBoardValues, opponentBoardValues]);
 
   return (
     <div className="Game">
@@ -31,6 +39,8 @@ function Game() {
           <DiceBoard
             diceNumber={diceNumber}
             changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
+            changePBV={(playerBoardValues) => changePBV(playerBoardValues)}
+            playerArr={playerBoardValues}
             playerTurn={isPlayerTurn}
             diceRolled={isDiceRolled}
             isPlayer={true}
@@ -38,6 +48,8 @@ function Game() {
           <DiceBoard
             diceNumber={diceNumber}
             changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
+            changeOBV={(opponentBoardValues) => changeOBV(opponentBoardValues)}
+            opponentArr={opponentBoardValues}
             playerTurn={isPlayerTurn}
             diceRolled={isDiceRolled}
             isPlayer={false}
