@@ -154,11 +154,13 @@ function DiceBoard(props) {
       let newArr = props.playerArr;
       newArr.splice(lastFilled, 1, props.diceNumber);
       props.changePBV(newArr);
+      props.newAdd([0, lastFilled]);
     } else {
       let lastFilled = props.opponentArr.findIndex((element) => element === 0);
       let newArr = props.opponentArr;
       newArr.splice(lastFilled, 1, props.diceNumber);
       props.changeOBV(newArr);
+      props.newAdd([0, lastFilled]);
     }
     let changedTurn = !props.playerTurn;
     props.changeTurn(changedTurn);
@@ -188,6 +190,7 @@ function DiceBoard(props) {
       let newArr = props.playerArr;
       newArr.splice(index, 1, props.diceNumber);
       props.changePBV(newArr);
+      props.newAdd([1, index]);
     } else {
       let index;
       let i = 2;
@@ -200,6 +203,7 @@ function DiceBoard(props) {
       let newArr = props.opponentArr;
       newArr.splice(index, 1, props.diceNumber);
       props.changeOBV(newArr);
+      props.newAdd([1, index]);
     }
     let changedTurn = !props.playerTurn;
     props.changeTurn(changedTurn);
@@ -227,6 +231,7 @@ function DiceBoard(props) {
       let newArr = props.playerArr;
       newArr.splice(index, 1, props.diceNumber);
       props.changePBV(newArr);
+      props.newAdd([2, index]);
     } else {
       let index;
       let i = 6;
@@ -239,6 +244,7 @@ function DiceBoard(props) {
       let newArr = props.opponentArr;
       newArr.splice(index, 1, props.diceNumber);
       props.changeOBV(newArr);
+      props.newAdd([2, index]);
     }
     let changedTurn = !props.playerTurn;
     props.changeTurn(changedTurn);

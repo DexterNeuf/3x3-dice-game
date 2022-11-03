@@ -10,11 +10,28 @@ function Game() {
   const [opponentBoardValues, changeOBV] = useState([
     0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
+  const [lastAdded, newAdd] = useState([0, 0]);
 
   useEffect(() => {
-    console.log(opponentBoardValues);
+    if (lastAdded[0] === 1) {
+      checkDuplicateValues(0);
+    } else if (lastAdded[0] === 2) {
+      checkDuplicateValues(2);
+    } else if (lastAdded[0] === 3) {
+      checkDuplicateValues(6);
+    }
   }, [isPlayerTurn]);
 
+  const checkDuplicateValues = (rowNum) => {
+    if (!isPlayerTurn) {
+      for (let i = 0; i < 3; i++) {}
+    } else {
+    }
+  };
+
+  const deleteDuplicateValues = (rowNum) => {
+    console.log('first');
+  };
   return (
     <div className="Game">
       <fieldset
@@ -39,6 +56,7 @@ function Game() {
           <DiceBoard
             diceNumber={diceNumber}
             changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
+            newAdd={(lastAdded) => newAdd(lastAdded)}
             changePBV={(playerBoardValues) => changePBV(playerBoardValues)}
             playerArr={playerBoardValues}
             playerTurn={isPlayerTurn}
@@ -48,6 +66,7 @@ function Game() {
           <DiceBoard
             diceNumber={diceNumber}
             changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
+            newAdd={(lastAdded) => newAdd(lastAdded)}
             changeOBV={(opponentBoardValues) => changeOBV(opponentBoardValues)}
             opponentArr={opponentBoardValues}
             playerTurn={isPlayerTurn}
