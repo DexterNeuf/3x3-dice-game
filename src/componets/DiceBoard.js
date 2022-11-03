@@ -201,7 +201,6 @@ function DiceBoard(props) {
       newArr.splice(index, 1, props.diceNumber);
       props.changeOBV(newArr);
     }
-
     let changedTurn = !props.playerTurn;
     props.changeTurn(changedTurn);
   };
@@ -216,6 +215,31 @@ function DiceBoard(props) {
         return { ...x };
       })
     );
+    if (props.isPlayer) {
+      let index;
+      let i = 6;
+      do {
+        if (props.playerArr[i] === 0) {
+          index = i;
+        }
+        i++;
+      } while (!index);
+      let newArr = props.playerArr;
+      newArr.splice(index, 1, props.diceNumber);
+      props.changePBV(newArr);
+    } else {
+      let index;
+      let i = 6;
+      do {
+        if (props.opponentArr[i] === 0) {
+          index = i;
+        }
+        i++;
+      } while (!index);
+      let newArr = props.opponentArr;
+      newArr.splice(index, 1, props.diceNumber);
+      props.changeOBV(newArr);
+    }
     let changedTurn = !props.playerTurn;
     props.changeTurn(changedTurn);
   };
