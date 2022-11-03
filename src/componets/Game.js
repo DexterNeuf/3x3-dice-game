@@ -12,7 +12,7 @@ function Game() {
   ]);
 
   useEffect(() => {
-    console.log('change');
+    console.log(opponentBoardValues);
   }, [isPlayerTurn]);
 
   return (
