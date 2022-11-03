@@ -12,8 +12,8 @@ function Game() {
   ]);
 
   useEffect(() => {
-    console.log('bamna');
-  }, [playerBoardValues, opponentBoardValues]);
+    console.log('change');
+  }, [isPlayerTurn]);
 
   return (
     <div className="Game">
@@ -66,7 +66,12 @@ function Game() {
               : 'grayscale(0%)',
         }}
       >
-        <DiceRolling isActive={isPlayerTurn} />
+        <DiceRolling
+          isActive={isPlayerTurn}
+          passDice={(diceNumber) => passDice(diceNumber)}
+          diceRolled={(isDiceRolled) => diceRolled(isDiceRolled)}
+          isRolled={isDiceRolled}
+        />
       </fieldset>
     </div>
   );

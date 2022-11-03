@@ -97,10 +97,6 @@ function DiceBoard(props) {
     { value: 0, isFilled: false, position: '3.2' },
   ]);
 
-  useEffect(() => {
-    console.log('bamna');
-  }, [row1]);
-
   const addDice1 = (e) => {
     let currentRow = e.target.parentElement.id;
     if (currentRow === 'row1') {
@@ -208,18 +204,18 @@ function DiceBoard(props) {
             // onMouseOut={handleMouseOut}
           >
             {row1[2].isFilled === true || row1[2].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
+              <div className={`dice${row1[2].value}`}></div>
             ) : (
               <div>{row1[2].value}</div>
             )}
             {row1[1].isFilled === true || row1[1].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
+              <div className={`dice${row1[1].value}`}></div>
             ) : (
               <div>{row1[1].value}</div>
             )}
 
             {row1[0].isFilled === true || row1[0].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
+              <div className={`dice${row1[0].value}`}></div>
             ) : (
               <div>{row1[0].value}</div>
             )}
@@ -235,17 +231,17 @@ function DiceBoard(props) {
             // onMouseOut={handleMouseOut}
           >
             {row2[2].isFilled === true || row2[2].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
+              <div className={`dice${row2[2].value}`}></div>
             ) : (
               <div>{row2[2].value}</div>
             )}
             {row2[1].isFilled === true || row2[1].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
+              <div className={`dice${row2[1].value}`}></div>
             ) : (
               <div>{row2[1].value}</div>
             )}
             {row2[0].isFilled === true || row2[0].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
+              <div className={`dice${row2[0].value}`}></div>
             ) : (
               <div>{row2[0].value}</div>
             )}
@@ -260,17 +256,17 @@ function DiceBoard(props) {
             onMouseOver={handleMouseOver}
           >
             {row3[2].isFilled === true || row3[2].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
+              <div className={`dice${row3[2].value}`}></div>
             ) : (
               <div>{row3[2].value}</div>
             )}
             {row3[1].isFilled === true || row3[1].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
+              <div className={`dice${row3[1].value}`}></div>
             ) : (
               <div>{row3[1].value}</div>
             )}
             {row3[0].isFilled === true || row3[0].isHovered === true ? (
-              <div className={`dice${props.diceNumber}`}></div>
+              <div className={`dice${row3[0].value}`}></div>
             ) : (
               <div>{row3[0].value}</div>
             )}

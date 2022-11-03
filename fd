@@ -1,0 +1,35 @@
+[33mcommit dcfcef98f254ee83d1e716a26993d64469739749[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Dex <dxneufeld14@gmail.com>
+Date:   Thu Oct 20 18:41:16 2022 -0700
+
+    added array with board values to compare for game logic
+
+[33mcommit e226b6ea28213711780afea234fed08ac8f2e750[m
+Author: Dex <dxneufeld14@gmail.com>
+Date:   Sat Oct 15 00:12:28 2022 -0700
+
+    diceBoard now conditonal renders depending on props values
+
+[33mcommit 391358fc68a5f4f3b6e8adf6c7faa669fc50e950[m
+Author: Dex <dxneufeld14@gmail.com>
+Date:   Fri Oct 14 22:02:46 2022 -0700
+
+    spilt dice-board in two
+
+[33mcommit 5c126c860f0b46b64d9ce96484429a47a6cd49cb[m
+Author: Dex <dxneufeld14@gmail.com>
+Date:   Fri Oct 14 20:22:48 2022 -0700
+
+    changed diceboard to more DRY methods
+
+[33mcommit b7531cf599ab21dd5353c7e59434e31ce6d5cafd[m
+Author: Dex <dxneufeld14@gmail.com>
+Date:   Fri Oct 14 18:54:27 2022 -0700
+
+    initial commit
+
+[33mcommit e2bc456be9aba109ffc7c6f1a6951c4d5bf032c4[m
+Author: Dex <dxneufeld14@gmail.com>
+Date:   Sun Aug 14 11:01:37 2022 -0700
+
+    Initialize project using Create React App
