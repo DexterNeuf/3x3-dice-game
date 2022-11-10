@@ -24,13 +24,15 @@ function Game() {
   }, [foo]);
 
   const changePlayerBoardValues = () => {
-    console.log(lastAdded);
-    // let x = playerBoardValues;
-    // changePBV(x.splice(lastAdded, 0, diceNumber));
+    let newArray = playerBoardValues;
+    newArray.splice(lastAdded, 1, diceNumber);
+    changePBV(newArray);
     changeTurn(!isPlayerTurn);
   };
   const changeOpponentBoardValues = () => {
-    console.log(lastAdded);
+    let newArray = opponentBoardValues;
+    newArray.splice(lastAdded, 1, diceNumber);
+    changeOBV(newArray);
     changeTurn(!isPlayerTurn);
   };
   return (

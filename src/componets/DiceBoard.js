@@ -54,23 +54,23 @@ function DiceBoard(props) {
       <div className="player-board">
         <div className={`player-row`}>
           <container id="row1" className={`player-row`} onClick={addDice}>
+            <div className={`dice${props.diceBoard[2]}`}></div>
+            <div className={`dice${props.diceBoard[1]}`}></div>
             <div className={`dice${props.diceBoard[0]}`}></div>
-            <div></div>
-            <div></div>
           </container>
         </div>
         <div className={`player-row`}>
           <container id="row2" className={`player-row`} onClick={addDice}>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div className={`dice${props.diceBoard[5]}`}></div>
+            <div className={`dice${props.diceBoard[4]}`}></div>
+            <div className={`dice${props.diceBoard[3]}`}></div>
           </container>
         </div>
         <div className={`player-row`} onClick={addDice}>
           <container id="row3" className={`player-row`}>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div className={`dice${props.diceBoard[8]}`}></div>
+            <div className={`dice${props.diceBoard[7]}`}></div>
+            <div className={`dice${props.diceBoard[6]}`}></div>
           </container>
         </div>
       </div>
