@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
 function DiceBoard(props) {
-  const newAdd = (rowNum) => {
-    props.newAdd(rowNum);
+  const newAdd = (index) => {
+    props.newAdd(index);
+    props.bar(!props.foo);
   };
+
   const IsPlayerDiv = (props) => {
     return (
       <div
@@ -28,10 +30,24 @@ function DiceBoard(props) {
     );
   };
   const addDice = (e) => {
-    console.log('e');
-    let currentRow = e.target.parentElement.id;
-    //sends the current row that has been selected up to game logic
-    newAdd(currentRow[3]);
+    let currentRow = e.target.parentElement.id[3];
+    if (currentRow == 1) {
+      findDicePostion(0);
+    } else if (currentRow == 2) {
+      findDicePostion(3);
+    } else if (currentRow == 3) {
+      findDicePostion(6);
+    }
+  };
+
+  const findDicePostion = (rowNum) => {
+    //find the first zero of a row
+    for (let i = 0; i < 3; i++) {
+      if (props.diceBoard[i + rowNum] === 0) {
+        newAdd(i + rowNum);
+        break;
+      }
+    }
   };
   return (
     <div>

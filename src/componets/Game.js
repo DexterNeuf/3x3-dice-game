@@ -11,6 +11,7 @@ function Game() {
     0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
   const [lastAdded, newAdd] = useState(0);
+  const [foo, bar] = useState(false);
 
   useEffect(() => {
     if (diceNumber !== 0) {
@@ -20,13 +21,16 @@ function Game() {
         changeOpponentBoardValues();
       }
     }
-  }, [lastAdded]);
+  }, [foo]);
+
   const changePlayerBoardValues = () => {
-    console.log('change P');
+    console.log(lastAdded);
+    // let x = playerBoardValues;
+    // changePBV(x.splice(lastAdded, 0, diceNumber));
     changeTurn(!isPlayerTurn);
   };
   const changeOpponentBoardValues = () => {
-    console.log('change 0');
+    console.log(lastAdded);
     changeTurn(!isPlayerTurn);
   };
   return (
@@ -52,12 +56,16 @@ function Game() {
         <div className="dice-board">
           <DiceBoard
             isPlayer={true}
+            foo={foo}
+            bar={(foo) => bar(foo)}
             playerTurn={isPlayerTurn}
             diceBoard={playerBoardValues}
             newAdd={(lastAdded) => newAdd(lastAdded)}
           />
           <DiceBoard
             isPlayer={false}
+            foo={foo}
+            bar={(foo) => bar(foo)}
             playerTurn={isPlayerTurn}
             diceBoard={opponentBoardValues}
             newAdd={(lastAdded) => newAdd(lastAdded)}
