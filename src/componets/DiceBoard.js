@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useImperativeHandle,
+  forwardRef,
+} from 'react';
 
 function DiceBoard(props) {
   const [isActive, setActive] = useState('true');
@@ -154,13 +159,13 @@ function DiceBoard(props) {
       let newArr = props.playerArr;
       newArr.splice(lastFilled, 1, props.diceNumber);
       props.changePBV(newArr);
-      props.newAdd([0, lastFilled]);
+      props.newAdd([1, lastFilled]);
     } else {
       let lastFilled = props.opponentArr.findIndex((element) => element === 0);
       let newArr = props.opponentArr;
       newArr.splice(lastFilled, 1, props.diceNumber);
       props.changeOBV(newArr);
-      props.newAdd([0, lastFilled]);
+      props.newAdd([1, lastFilled]);
     }
     let changedTurn = !props.playerTurn;
     props.changeTurn(changedTurn);
@@ -190,7 +195,7 @@ function DiceBoard(props) {
       let newArr = props.playerArr;
       newArr.splice(index, 1, props.diceNumber);
       props.changePBV(newArr);
-      props.newAdd([1, index]);
+      props.newAdd([2, index]);
     } else {
       let index;
       let i = 2;
@@ -203,7 +208,7 @@ function DiceBoard(props) {
       let newArr = props.opponentArr;
       newArr.splice(index, 1, props.diceNumber);
       props.changeOBV(newArr);
-      props.newAdd([1, index]);
+      props.newAdd([2, index]);
     }
     let changedTurn = !props.playerTurn;
     props.changeTurn(changedTurn);
@@ -231,7 +236,7 @@ function DiceBoard(props) {
       let newArr = props.playerArr;
       newArr.splice(index, 1, props.diceNumber);
       props.changePBV(newArr);
-      props.newAdd([2, index]);
+      props.newAdd([3, index]);
     } else {
       let index;
       let i = 6;
@@ -244,11 +249,14 @@ function DiceBoard(props) {
       let newArr = props.opponentArr;
       newArr.splice(index, 1, props.diceNumber);
       props.changeOBV(newArr);
-      props.newAdd([2, index]);
+      props.newAdd([3, index]);
     }
     let changedTurn = !props.playerTurn;
     props.changeTurn(changedTurn);
   };
+
+  console.log(props.test);
+
   return (
     <div>
       <div className="player-board">
