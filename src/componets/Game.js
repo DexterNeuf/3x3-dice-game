@@ -1,57 +1,33 @@
 import DiceRolling from './DiceRolling';
 import DiceBoard from './DiceBoard';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Game() {
-  const [diceNumber, passDice] = useState(1);
+  const [diceNumber, passDice] = useState(0);
   const [isPlayerTurn, changeTurn] = useState(true);
   const [isDiceRolled, diceRolled] = useState(false);
   const [playerBoardValues, changePBV] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const [opponentBoardValues, changeOBV] = useState([
     0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
-  const [lastAdded, newAdd] = useState([0, 0]);
-  const [test, setTest] = useState([0, 0, '']);
+  const [lastAdded, newAdd] = useState(0);
 
   useEffect(() => {
-    if (lastAdded[0] === 1) {
-      checkDuplicateValues(0);
-    } else if (lastAdded[0] === 2) {
-      checkDuplicateValues(3);
-    } else if (lastAdded[0] === 3) {
-      checkDuplicateValues(6);
-    }
-  }, [isPlayerTurn]);
-
-  const checkDuplicateValues = (rowNum) => {
-    //player went last
-    if (!isPlayerTurn) {
-      for (let i = 0; i < 3; i++) {
-        //checks to see if dice value just played matches up with any dice of the same
-        //value in the oppents row
-        if (
-          opponentBoardValues[i + rowNum] === playerBoardValues[lastAdded[1]]
-        ) {
-          setTest([lastAdded[0], playerBoardValues[lastAdded[1]], 'opp']);
-        }
+    if (diceNumber !== 0) {
+      if (isPlayerTurn) {
+        changePlayerBoardValues();
+      } else {
+        changeOpponentBoardValues();
       }
     }
-    //opp went last
-    else {
-      for (let i = 0; i < 3; i++) {
-        //checks to see if dice value just played matches up with any dice of the same
-        //value in the player row
-        if (
-          playerBoardValues[i + rowNum] === opponentBoardValues[lastAdded[1]]
-        ) {
-          setTest([lastAdded[0], opponentBoardValues[lastAdded[1]], 'player']);
-        }
-      }
-    }
+  }, [lastAdded]);
+  const changePlayerBoardValues = () => {
+    console.log('change P');
+    changeTurn(!isPlayerTurn);
   };
-
-  const deleteDuplicateValues = (rowNum) => {
-    console.log('first');
+  const changeOpponentBoardValues = () => {
+    console.log('change 0');
+    changeTurn(!isPlayerTurn);
   };
   return (
     <div className="Game">
@@ -75,26 +51,16 @@ function Game() {
       <fieldset className={`dice-board`}>
         <div className="dice-board">
           <DiceBoard
-            diceNumber={diceNumber}
-            changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
-            newAdd={(lastAdded) => newAdd(lastAdded)}
-            changePBV={(playerBoardValues) => changePBV(playerBoardValues)}
-            playerArr={playerBoardValues}
-            playerTurn={isPlayerTurn}
-            diceRolled={isDiceRolled}
             isPlayer={true}
-            test={test}
+            playerTurn={isPlayerTurn}
+            diceBoard={playerBoardValues}
+            newAdd={(lastAdded) => newAdd(lastAdded)}
           />
           <DiceBoard
-            diceNumber={diceNumber}
-            changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
-            newAdd={(lastAdded) => newAdd(lastAdded)}
-            changeOBV={(opponentBoardValues) => changeOBV(opponentBoardValues)}
-            opponentArr={opponentBoardValues}
-            playerTurn={isPlayerTurn}
-            diceRolled={isDiceRolled}
             isPlayer={false}
-            test={test}
+            playerTurn={isPlayerTurn}
+            diceBoard={opponentBoardValues}
+            newAdd={(lastAdded) => newAdd(lastAdded)}
           />
         </div>
       </fieldset>
@@ -109,10 +75,8 @@ function Game() {
         }}
       >
         <DiceRolling
-          isActive={isPlayerTurn}
           passDice={(diceNumber) => passDice(diceNumber)}
           diceRolled={(isDiceRolled) => diceRolled(isDiceRolled)}
-          isRolled={isDiceRolled}
         />
       </fieldset>
     </div>
