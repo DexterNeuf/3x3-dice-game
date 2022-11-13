@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function DiceBoard(props) {
-  const [postionTracker, changePostion] = useState(0);
+  const [postionTracker, changePostion] = useState(1);
 
   const newAdd = (index) => {
     props.newAdd(index);
@@ -58,7 +58,13 @@ function DiceBoard(props) {
           <section
             id="row1"
             className={`player-row ${
-              props.isPlayer && postionTracker === 0 ? 'selected' : ''
+              props.isPlayer && props.playerTurn && postionTracker === 1
+                ? 'selected'
+                : ''
+            }${
+              !props.isPlayer && !props.playerTurn && postionTracker === 2
+                ? 'selected'
+                : ''
             }`}
             onClick={addDice}
           >
@@ -68,14 +74,39 @@ function DiceBoard(props) {
           </section>
         </div>
         <div className={`player-row`}>
-          <section id="row2" className={`player-row`} onClick={addDice}>
+          <section
+            id="row2"
+            className={`player-row
+          ${
+            props.isPlayer && props.playerTurn && postionTracker === 2
+              ? 'selected'
+              : ''
+          }${
+              !props.isPlayer && !props.playerTurn && postionTracker === 2
+                ? 'selected'
+                : ''
+            }`}
+            onClick={addDice}
+          >
             <div className={`dice dice${props.diceBoard[5]}`}></div>
             <div className={`dice dice${props.diceBoard[4]}`}></div>
             <div className={`dice dice${props.diceBoard[3]}`}></div>
           </section>
         </div>
         <div className={`player-row`} onClick={addDice}>
-          <section id="row3" className={`player-row`}>
+          <section
+            id="row3"
+            className={`player-row 
+          ${
+            props.isPlayer && props.playerTurn && postionTracker === 3
+              ? 'selected'
+              : ''
+          }${
+              !props.isPlayer && !props.playerTurn && postionTracker === 3
+                ? 'selected'
+                : ''
+            }`}
+          >
             <div className={`dice dice${props.diceBoard[8]}`}></div>
             <div className={`dice dice${props.diceBoard[7]}`}></div>
             <div className={`dice dice${props.diceBoard[6]}`}></div>
