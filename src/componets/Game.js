@@ -37,24 +37,39 @@ function Game() {
   };
 
   //funciton to check if the dice added matches to any of the dice on the opposite player board
-
   const checkDupValues = () => {
-    let rowNum = 0;
-    if (lastAdded > 3) {
-      rowNum = 1;
-    } else if (lastAdded > 9 && lastAdded < 5) {
-      rowNum = 3;
+    let rowStart;
+    if (lastAdded < 3) {
+      rowStart = 0;
+    } else if (lastAdded < 9 && lastAdded > 5) {
+      rowStart = 6;
     } else {
-      rowNum = 2;
+      rowStart = 3;
     }
     let oppositeBoard;
     // determine what board to chose depending on the player turn
     isPlayerTurn
       ? (oppositeBoard = opponentBoardValues)
       : (oppositeBoard = playerBoardValues);
+    for (let i = 0; i < 3; i++) {
+      if (oppositeBoard[i + rowStart] === diceNumber) {
+        //calls function to delete dup values if found
+        deleteDupValues(oppositeBoard, rowStart);
+        break;
+      }
+    }
+    changeTurn(!isPlayerTurn);
   };
-  const x = 1;
-  x === 1 ? console.log('x=1') : console.log('x=1');
+  const deleteDupValues = (oppositeBoard, rowStart) => {
+    // goes thru all the values of the dice in a row and deletes all copies of the dup values
+    for (let i = 0; i < 3; i++) {
+      if (oppositeBoard[i + rowStart] === diceNumber) {
+        oppositeBoard[i + rowStart] = 0;
+      }
+    }
+    isPlayerTurn ? changeOBV(oppositeBoard) : changePBV(oppositeBoard);
+    changeTurn(!isPlayerTurn);
+  };
   return (
     <div className="Game">
       <fieldset
