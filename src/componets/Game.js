@@ -27,14 +27,34 @@ function Game() {
     let newArray = playerBoardValues;
     newArray.splice(lastAdded, 1, diceNumber);
     changePBV(newArray);
-    changeTurn(!isPlayerTurn);
+    checkDupValues();
   };
   const changeOpponentBoardValues = () => {
     let newArray = opponentBoardValues;
     newArray.splice(lastAdded, 1, diceNumber);
     changeOBV(newArray);
-    changeTurn(!isPlayerTurn);
+    checkDupValues();
   };
+
+  //funciton to check if the dice added matches to any of the dice on the opposite player board
+
+  const checkDupValues = () => {
+    let rowNum = 0;
+    if (lastAdded > 3) {
+      rowNum = 1;
+    } else if (lastAdded > 9 && lastAdded < 5) {
+      rowNum = 3;
+    } else {
+      rowNum = 2;
+    }
+    let oppositeBoard;
+    // determine what board to chose depending on the player turn
+    isPlayerTurn
+      ? (oppositeBoard = opponentBoardValues)
+      : (oppositeBoard = playerBoardValues);
+  };
+  const x = 1;
+  x === 1 ? console.log('x=1') : console.log('x=1');
   return (
     <div className="Game">
       <fieldset
