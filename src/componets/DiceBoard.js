@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 function DiceBoard(props) {
+  const [postionTracker, changePostion] = useState(0);
+
   const newAdd = (index) => {
     props.newAdd(index);
     props.bar(!props.foo);
@@ -53,25 +55,31 @@ function DiceBoard(props) {
     <div>
       <div className="player-board">
         <div className={`player-row`}>
-          <container id="row1" className={`player-row`} onClick={addDice}>
-            <div className={`dice${props.diceBoard[2]}`}></div>
-            <div className={`dice${props.diceBoard[1]}`}></div>
-            <div className={`dice${props.diceBoard[0]}`}></div>
-          </container>
+          <section
+            id="row1"
+            className={`player-row ${
+              props.isPlayer && postionTracker === 0 ? 'selected' : ''
+            }`}
+            onClick={addDice}
+          >
+            <div className={`dice dice${props.diceBoard[2]}`}></div>
+            <div className={`dice dice${props.diceBoard[1]}`}></div>
+            <div className={`dice dice${props.diceBoard[0]}`}></div>
+          </section>
         </div>
         <div className={`player-row`}>
-          <container id="row2" className={`player-row`} onClick={addDice}>
-            <div className={`dice${props.diceBoard[5]}`}></div>
-            <div className={`dice${props.diceBoard[4]}`}></div>
-            <div className={`dice${props.diceBoard[3]}`}></div>
-          </container>
+          <section id="row2" className={`player-row`} onClick={addDice}>
+            <div className={`dice dice${props.diceBoard[5]}`}></div>
+            <div className={`dice dice${props.diceBoard[4]}`}></div>
+            <div className={`dice dice${props.diceBoard[3]}`}></div>
+          </section>
         </div>
         <div className={`player-row`} onClick={addDice}>
-          <container id="row3" className={`player-row`}>
-            <div className={`dice${props.diceBoard[8]}`}></div>
-            <div className={`dice${props.diceBoard[7]}`}></div>
-            <div className={`dice${props.diceBoard[6]}`}></div>
-          </container>
+          <section id="row3" className={`player-row`}>
+            <div className={`dice dice${props.diceBoard[8]}`}></div>
+            <div className={`dice dice${props.diceBoard[7]}`}></div>
+            <div className={`dice dice${props.diceBoard[6]}`}></div>
+          </section>
         </div>
       </div>
       {props.isPlayer ? (

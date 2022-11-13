@@ -168,82 +168,50 @@ table {
 .player-row > div {
   box-sizing: border-box;
   background-color: white;
-  margin: 10px auto;
   text-align: center;
   width: 100px;
   height: 100px;
 }
-
-.hoverable:hover > div {
+.selected {
   border: red 2px solid;
 }
-container {
+section {
   box-sizing: border-box;
   display: inline-block;
   width: auto;
-  margin: 0;
+  margin: 0.5rem 0 0 0;
+}
+.dice {
+  margin: 0 auto;
+  background-position: center;
+  width: 128px;
+  height: 128px;
+  background-repeat: no-repeat;
+  border-radius: 10%;
+  background-size: 90%;
+}
+.dice:nth-child(2) {
+  margin: 10px auto;
 }
 .dice1 {
-  margin: 0 auto;
   background-image: url(../../public/./cursor-dice/dice1.svg);
-  background-position: center;
-  width: 128px;
-  height: 128px;
-  background-repeat: no-repeat;
-  border-radius: 10%;
-  background-size: 90%;
 }
 .dice2 {
-  margin: 0 auto;
   background-image: url(../../public/./full-size-dice/dice2.svg);
-  background-position: center;
-  width: 128px;
-  height: 128px;
-  background-repeat: no-repeat;
-  border-radius: 10%;
-  background-size: 90%;
 }
 
 .dice3 {
-  margin: 0 auto;
   background-image: url(../../public/./full-size-dice/dice3.svg);
-  background-position: center;
-  width: 128px;
-  height: 128px;
-  background-repeat: no-repeat;
-  border-radius: 10%;
-  background-size: 90%;
 }
 .dice4 {
-  margin: 0 auto;
   background-image: url(../../public/./full-size-dice/dice4.svg);
-  background-position: center;
-  width: 128px;
-  height: 128px;
-  background-repeat: no-repeat;
-  border-radius: 10%;
-  background-size: 90%;
 }
 .dice5 {
-  margin: 0 auto;
   background-image: url(../../public/./full-size-dice/dice5.svg);
-  background-position: center;
-  width: 128px;
-  height: 128px;
-  background-repeat: no-repeat;
-  border-radius: 10%;
-  background-size: 90%;
 }
 
 .dice6 {
-  margin: 0 auto;
   background-image: url(../../public/./full-size-dice/dice6.svg);
-  background-position: center;
-  width: 128px;
-  height: 128px;
-  background-repeat: no-repeat;
-  border-radius: 10%;
-  background-size: 90%;
 }
 p {
   display: inline-block;

@@ -26,7 +26,7 @@ function DiceRolling(props) {
     <div className="dice-containter">
       <h1>{props.isActive}</h1>
       <div className="dice-rolling-container">
-        <div className={`dice${dice} dice-roll-box`}></div>
+        <div className={`dice dice${dice} dice-roll-box`}></div>
       </div>
       <button onClick={ping}>click</button>
     </div>
