@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 function DiceBoard(props) {
   const [postionTracker, changePostion] = useState(1);
@@ -7,6 +7,29 @@ function DiceBoard(props) {
     props.newAdd(index);
     props.bar(!props.foo);
   };
+
+  useEffect(() => {
+    function listener(e) {
+      if (e.key === 'ArrowLeft') {
+        if (postionTracker !== 1) {
+          changePostion(postionTracker - 1);
+        } else {
+          console.log('cant left');
+        }
+      }
+      if (e.key === 'ArrowRight') {
+        if (postionTracker !== 3) {
+          changePostion(postionTracker + 1);
+        } else {
+          console.log('cant right');
+        }
+      }
+    }
+    document.addEventListener('keydown', listener);
+    return () => {
+      document.removeEventListener('keydown', listener);
+    };
+  }, [postionTracker]);
 
   const IsPlayerDiv = (props) => {
     return (
@@ -62,7 +85,7 @@ function DiceBoard(props) {
                 ? 'selected'
                 : ''
             }${
-              !props.isPlayer && !props.playerTurn && postionTracker === 2
+              !props.isPlayer && !props.playerTurn && postionTracker === 1
                 ? 'selected'
                 : ''
             }`}
