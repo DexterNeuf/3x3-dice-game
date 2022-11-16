@@ -12,6 +12,7 @@ function Game() {
   ]);
   const [lastAdded, newAdd] = useState(0);
   const [foo, bar] = useState(false);
+  const [isBoardFull, changeBoardFull] = useState(false);
 
   useEffect(() => {
     if (diceNumber !== 0) {
@@ -27,6 +28,7 @@ function Game() {
     let newArray = playerBoardValues;
     newArray.splice(lastAdded, 1, diceNumber);
     changePBV(newArray);
+    checkBoardFull();
     checkDupValues();
   };
   const changeOpponentBoardValues = () => {
@@ -36,6 +38,17 @@ function Game() {
     checkDupValues();
   };
 
+  const checkBoardFull = () => {
+    let isFull = true;
+    let currentBoard = '';
+    isPlayerTurn
+      ? (currentBoard = playerBoardValues)
+      : (currentBoard = opponentBoardValues);
+    for (let i = 0; i < currentBoard.length; i++) {
+      if (currentBoard[i] === 0) isFull = false;
+    }
+    if (isFull === true) console.log('true');
+  };
   //funciton to check if the dice added matches to any of the dice on the opposite player board
   const checkDupValues = () => {
     let rowStart;
@@ -58,6 +71,7 @@ function Game() {
         break;
       }
     }
+    checkBoardFull();
     changeTurn(!isPlayerTurn);
   };
   const deleteDupValues = (oppositeBoard, rowStart) => {
@@ -68,6 +82,7 @@ function Game() {
       }
     }
     isPlayerTurn ? changeOBV(oppositeBoard) : changePBV(oppositeBoard);
+    checkBoardFull();
     changeTurn(!isPlayerTurn);
   };
   return (

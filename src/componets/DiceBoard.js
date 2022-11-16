@@ -95,6 +95,11 @@ function DiceBoard(props) {
             <div className={`dice dice${props.diceBoard[1]}`}></div>
             <div className={`dice dice${props.diceBoard[0]}`}></div>
           </section>
+          <div className="score-total">
+            <p>
+              {props.diceBoard[0] + props.diceBoard[1] + props.diceBoard[2]}
+            </p>
+          </div>
         </div>
         <div className={`player-row`}>
           <section

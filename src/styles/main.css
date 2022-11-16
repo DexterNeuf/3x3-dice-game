@@ -219,7 +219,8 @@ p {
 /* input {
   display: none;
 } */
-dice-roll-box {
-  max-width: 138px;
-  max-height: 138px;
+.score-total {
+  margin: 1rem auto 0;
+  background-color: lightgray !important;
+  height: auto !important;
 }
