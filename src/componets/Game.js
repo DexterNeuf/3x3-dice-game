@@ -29,7 +29,6 @@ function Game() {
     let newArray = playerBoardValues;
     newArray.splice(lastAdded, 1, diceNumber);
     changePBV(newArray);
-    checkBoardFull();
     checkDupValues();
   };
   const changeOpponentBoardValues = () => {
@@ -48,7 +47,7 @@ function Game() {
     for (let i = 0; i < currentBoard.length; i++) {
       if (currentBoard[i] === 0) isFull = false;
     }
-    if (isFull === true) changeBoardFull(!isBoardFull);
+    if (isFull === true) testBoardFull();
   };
 
   //funciton to check if the dice added matches to any of the dice on the opposite player board
@@ -91,6 +90,21 @@ function Game() {
   const testBoardFull = () => {
     changeBoardFull(!isBoardFull);
   };
+
+  useEffect(() => {
+    if (diceNumber !== 0) {
+      const timer = setTimeout(() => {
+        changeBoardFull(!isBoardFull);
+        passDice(0);
+        changeOBV([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+        changePBV([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+        changeTurn(true);
+        diceRolled(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isBoardFull]);
+
   return (
     <div className="Game">
       <GameFinishModal isBoardFull={isBoardFull}></GameFinishModal>
