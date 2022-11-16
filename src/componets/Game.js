@@ -120,6 +120,7 @@ function Game() {
         }}
       >
         <DiceRolling
+          diceNumber={diceNumber}
           passDice={(diceNumber) => passDice(diceNumber)}
           diceRolled={(isDiceRolled) => diceRolled(isDiceRolled)}
           isRolled={isDiceRolled}
@@ -156,8 +157,10 @@ function Game() {
         }}
       >
         <DiceRolling
+          diceNumber={diceNumber}
           passDice={(diceNumber) => passDice(diceNumber)}
           diceRolled={(isDiceRolled) => diceRolled(isDiceRolled)}
+          isRolled={isDiceRolled}
         />
       </fieldset>
     </div>

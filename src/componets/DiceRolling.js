@@ -10,10 +10,11 @@ function DiceRolling(props) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
   const ping = async () => {
+    props.passDice(1);
     for (let i = 0; i < 10; i++) {
       let randomNumber = getRandomInt(6) + 1;
       diceRoll(randomNumber);
-      await sleep(70);
+      await sleep(60);
       if (i === 9) {
         props.passDice(randomNumber);
         let x = !props.isRolled;
@@ -24,9 +25,12 @@ function DiceRolling(props) {
 
   return (
     <div className="dice-containter">
-      <h1>{props.isActive}</h1>
       <div className="dice-rolling-container">
-        <div className={`dice dice${dice} dice-roll-box`}></div>
+        {props.diceNumber ? (
+          <div className={`dice dice${dice}`}></div>
+        ) : (
+          <div className={`dice`}></div>
+        )}
       </div>
       <button onClick={ping}>click</button>
     </div>
