@@ -1,5 +1,6 @@
 import DiceRolling from './DiceRolling';
 import DiceBoard from './DiceBoard';
+import GameFinishModal from './GameFinishModal';
 import React, { useState, useEffect } from 'react';
 
 function Game() {
@@ -47,8 +48,9 @@ function Game() {
     for (let i = 0; i < currentBoard.length; i++) {
       if (currentBoard[i] === 0) isFull = false;
     }
-    if (isFull === true) console.log('true');
+    if (isFull === true) changeBoardFull(!isBoardFull);
   };
+
   //funciton to check if the dice added matches to any of the dice on the opposite player board
   const checkDupValues = () => {
     let rowStart;
@@ -85,8 +87,13 @@ function Game() {
     checkBoardFull();
     changeTurn(!isPlayerTurn);
   };
+
+  const testBoardFull = () => {
+    changeBoardFull(!isBoardFull);
+  };
   return (
     <div className="Game">
+      <GameFinishModal isBoardFull={isBoardFull}></GameFinishModal>
       <fieldset
         disabled={!isPlayerTurn}
         className={`player-space`}

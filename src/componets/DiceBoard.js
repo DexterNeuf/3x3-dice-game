@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 function DiceBoard(props) {
   const [postionTracker, changePostion] = useState(1);
+  const [isOpen, openModal] = useState(false);
 
   const newAdd = (index) => {
     props.newAdd(index);
