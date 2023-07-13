@@ -255,7 +255,6 @@ function DiceBoard(props) {
     props.changeTurn(changedTurn);
   };
 
-  console.log(props.test);
 
   return (
     <div>

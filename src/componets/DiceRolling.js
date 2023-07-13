@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 
 function DiceRolling(props) {
 
@@ -22,11 +22,26 @@ function DiceRolling(props) {
       }
     }
    }
+   const prevPropValueRef = useRef(props.isActive);
+   
+  useEffect(() => {
+    // Compare the current prop value with the previous prop value
+    if (props.isActive !== prevPropValueRef.current) {
+      ping() 
+      // Perform actions or logic based on the prop change
+    }
+
+    // Update the previous prop value with the current prop value
+    prevPropValueRef.current = props.isActive;
+  }, [props.isActive]);
+
+ 
+
+   // run on first render 
     useEffect(() => {
      if(!props.isActive){
       ping()
      }
-      
     }, []);
   ;
 
