@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 
 function DiceRolling(props) {
+
   const [dice, diceRoll] = useState(1);
 
   const getRandomInt = (max) => {
@@ -20,7 +21,14 @@ function DiceRolling(props) {
         props.diceRolled(x);
       }
     }
-  };
+   }
+    useEffect(() => {
+     if(!props.isActive){
+      ping()
+     }
+      
+    }, []);
+  ;
 
   return (
     <div className="dice-containter">
