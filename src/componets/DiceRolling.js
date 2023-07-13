@@ -4,6 +4,14 @@ function DiceRolling(props) {
 
   const [dice, diceRoll] = useState(1);
 
+  const isActiveCheck = () =>{
+     if(props.isActive){
+      return <h1>true</h1>
+     }else{
+      return <h1>false</h1>
+     }
+  }
+
   const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
   };
@@ -27,7 +35,11 @@ function DiceRolling(props) {
   useEffect(() => {
     // Compare the current prop value with the previous prop value
     if (props.isActive !== prevPropValueRef.current) {
-      ping() 
+      if (props.isActive && props.isPlayer) {
+        ping() 
+      } else if (!props.isActive && !props.isPlayer){
+        ping()
+      }
       // Perform actions or logic based on the prop change
     }
 
@@ -36,10 +48,9 @@ function DiceRolling(props) {
   }, [props.isActive]);
 
  
-
-   // run on first render 
+   //run on first render 
     useEffect(() => {
-     if(!props.isActive){
+     if(props.isPlayer){
       ping()
      }
     }, []);
@@ -47,7 +58,6 @@ function DiceRolling(props) {
 
   return (
     <div className="dice-containter">
-      <h1>{props.isActive}</h1>
       <div className="dice-rolling-container">
         <div className={`dice${dice} dice-roll-box`}></div>
       </div>

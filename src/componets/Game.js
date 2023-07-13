@@ -67,6 +67,8 @@ function Game() {
         }}
       >
         <DiceRolling
+          isPlayer={true}
+          isActive={isPlayerTurn}
           passDice={(diceNumber) => passDice(diceNumber)}
           diceRolled={(isDiceRolled) => diceRolled(isDiceRolled)}
           isRolled={isDiceRolled}
@@ -109,6 +111,7 @@ function Game() {
         }}
       >
         <DiceRolling
+          isPlayer={false}
           isActive={isPlayerTurn}
           passDice={(diceNumber) => passDice(diceNumber)}
           diceRolled={(isDiceRolled) => diceRolled(isDiceRolled)}
