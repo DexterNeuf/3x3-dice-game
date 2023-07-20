@@ -1,13 +1,9 @@
 import React, {
-  useEffect,
   useState,
-  useImperativeHandle,
-  forwardRef,
 } from 'react';
 
 function DiceBoard(props) {
   const [isActive, setActive] = useState('true');
-  const [lastHovered, setLastHovered] = useState('0');
 
   const handleMouseOver = (e) => {
     let selectedRow = e.target.parentElement.id;
@@ -39,7 +35,6 @@ function DiceBoard(props) {
             })
           );
         }
-        setLastHovered('row1');
       }
     }
   };
@@ -68,23 +63,7 @@ function DiceBoard(props) {
       ></div>
     );
   };
-  const handleMouseOut = (e) => {
-    if (lastHovered === 'row1') {
-      let obj = row1.find((o) => o.isHovered === true);
-      if (obj) {
-        let i = row1.indexOf(obj);
-        changeDiceValue(
-          row1.map((x) => {
-            if (x.position === `1.${i}`) {
-              x.value = 0;
-              x.isHovered = false;
-            }
-            return { ...x };
-          })
-        );
-      }
-    }
-  };
+
 
   const [row1, changeDiceValue] = useState([
     { value: 0, isFilled: false, isHovered: false, position: '1.0' },
@@ -254,7 +233,25 @@ function DiceBoard(props) {
     let changedTurn = !props.playerTurn;
     props.changeTurn(changedTurn);
   };
+ const AddTogether = (props) => {
+   let row;
 
+   if (props.rowNum === 1){
+     row=row1
+    }else if (props.rowNum === 2){
+      row=row2
+    }else{
+      row=row3
+    }
+    const test = () => {
+      return(
+    <p>{row[0].value + row[1].value + row[2].value}</p> 
+      )
+    }
+   return(
+    test()
+  )
+ }
 
   return (
     <div>
@@ -285,7 +282,9 @@ function DiceBoard(props) {
               <div>{row1[0].value}</div>
             )}
           </container>
-          <p>{row1[0].value + row1[1].value + row1[2].value}</p>
+          <AddTogether
+            rowNum={1}          
+          />
         </div>
         <div className={`player-row`}>
           <container

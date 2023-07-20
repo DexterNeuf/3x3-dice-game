@@ -50,9 +50,7 @@ function Game() {
     }
   };
 
-  const deleteDuplicateValues = (rowNum) => {
-    console.log('first');
-  };
+    
   return (
     <div className="Game">
       <fieldset
