@@ -234,7 +234,10 @@ function DiceBoard(props) {
     props.changeTurn(changedTurn);
   };
 
+//Checks too see if there are any duplicate numbers in a row and if
+//there are it multiples them by 2 for pairs and 3 for triples
  const AddTogether = (props) => {
+  //check what row its from
    let row ;
    if (props.rowNum === 1){
      row=row1
@@ -244,9 +247,9 @@ function DiceBoard(props) {
       row=row3
     }
 
+  // gets value of the dice in row and adds it too new array
     const extractValuesFromRow = () =>{
       const valuesArray = [];
-
        for (const obj of row) {
            if (obj.hasOwnProperty('value')) {
            valuesArray.push(obj['value']);
@@ -255,15 +258,13 @@ function DiceBoard(props) {
        return valuesArray;
      }
 
+    //checks to see if there are duplicates and does math 
     const findDups = () => {
        let rowValue = extractValuesFromRow()
       if(rowValue[0] === rowValue[1] && rowValue[0] === rowValue[2]){
-        rowValue.splice(0, 1, rowValue[0]*3);
-        rowValue.splice(1, 2, rowValue[0]*3); 
-        rowValue.splice(2, 3, rowValue[0]*3); 
+        rowValue = [rowValue[0]*3, rowValue[1]*3, rowValue[2]*3,]
       }else if(rowValue[0] === rowValue[1]) {
         rowValue = [rowValue[0]*2, rowValue[1]*2, rowValue[2],]
-        console.log('splice');
       }else if(rowValue[1] === rowValue[2]) {
         rowValue = [rowValue[0], rowValue[1]*2, rowValue[2]*2,] 
       }
@@ -271,14 +272,10 @@ function DiceBoard(props) {
         rowValue
       )
     }
-    
       const calculatedRow = findDups()
-      
       return(
         <p>{calculatedRow[0] + calculatedRow[1] + calculatedRow[2]}</p> 
       )
-    
-  
  }
 
   return (
@@ -338,7 +335,9 @@ function DiceBoard(props) {
               <div>{row2[0].value}</div>
             )}
           </container>
-          <p>{row2[0].value + row2[1].value + row2[2].value}</p>
+          <AddTogether
+            rowNum={2}          
+          />
         </div>
         <div className={`player-row`}>
           <container
@@ -363,7 +362,9 @@ function DiceBoard(props) {
               <div>{row3[0].value}</div>
             )}
           </container>
-          <p>{row3[0].value + row3[1].value + row3[2].value}</p>
+          <AddTogether
+            rowNum={3}          
+          />
         </div>
       </div>
       {props.isPlayer ? (
