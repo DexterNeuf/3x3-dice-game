@@ -233,9 +233,9 @@ function DiceBoard(props) {
     let changedTurn = !props.playerTurn;
     props.changeTurn(changedTurn);
   };
- const AddTogether = (props) => {
-   let row;
 
+ const AddTogether = (props) => {
+   let row ;
    if (props.rowNum === 1){
      row=row1
     }else if (props.rowNum === 2){
@@ -243,14 +243,45 @@ function DiceBoard(props) {
     }else{
       row=row3
     }
-    const test = () => {
+
+    const extractValuesFromRow = () =>{
+      const valuesArray = [];
+
+       for (const obj of row) {
+           if (obj.hasOwnProperty('value')) {
+           valuesArray.push(obj['value']);
+         }
+       }
+       return valuesArray;
+     }
+
+    const findDups = () => {
+       let rowValue = extractValuesFromRow()
+      if(rowValue[0] === rowValue[1] && rowValue[0] === rowValue[2]){
+        rowValue.splice(0, 1, rowValue[0]*3);
+        rowValue.splice(1, 2, rowValue[0]*3); 
+        rowValue.splice(2, 3, rowValue[0]*3); 
+      }else if(rowValue[0] === rowValue[1]) {
+        rowValue.splice(0, 1, rowValue[0]*2);
+        rowValue.splice(1, 2, rowValue[0]*2);
+        console.log(rowValue);
+        console.log('splice');
+      }else if(rowValue[1] === rowValue[2]) {
+        rowValue.splice(1, 2, rowValue[1]*2);
+        rowValue.splice(2, 3, rowValue[1]*2);
+      }
       return(
-    <p>{row[0].value + row[1].value + row[2].value}</p> 
+        rowValue
       )
     }
-   return(
-    test()
-  )
+    
+      const calculatedRow = findDups()
+      
+      return(
+        <p>{calculatedRow[0] + calculatedRow[1] + calculatedRow[2]}</p> 
+      )
+    
+  
  }
 
   return (
