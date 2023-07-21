@@ -262,13 +262,10 @@ function DiceBoard(props) {
         rowValue.splice(1, 2, rowValue[0]*3); 
         rowValue.splice(2, 3, rowValue[0]*3); 
       }else if(rowValue[0] === rowValue[1]) {
-        rowValue.splice(0, 1, rowValue[0]*2);
-        rowValue.splice(1, 2, rowValue[0]*2);
-        console.log(rowValue);
+        rowValue = [rowValue[0]*2, rowValue[1]*2, rowValue[2],]
         console.log('splice');
       }else if(rowValue[1] === rowValue[2]) {
-        rowValue.splice(1, 2, rowValue[1]*2);
-        rowValue.splice(2, 3, rowValue[1]*2);
+        rowValue = [rowValue[0], rowValue[1]*2, rowValue[2]*2,] 
       }
       return(
         rowValue
