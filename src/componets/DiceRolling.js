@@ -4,25 +4,19 @@ function DiceRolling(props) {
 
   const [dice, diceRoll] = useState(1);
 
-  const isActiveCheck = () =>{
-     if(props.isActive){
-      return <h1>true</h1>
-     }else{
-      return <h1>false</h1>
-     }
-  }
-
   const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
   };
+
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
-  const ping = async () => {
+
+  const diceAnimation = async () => {
     for (let i = 0; i < 10; i++) {
       let randomNumber = getRandomInt(6) + 1;
       diceRoll(randomNumber);
-      await sleep(70);
+      await sleep(72);
       if (i === 9) {
         props.passDice(randomNumber);
         let x = !props.isRolled;
@@ -30,15 +24,16 @@ function DiceRolling(props) {
       }
     }
    }
-   const prevPropValueRef = useRef(props.isActive);
+
+  const prevPropValueRef = useRef(props.isActive);
    
   useEffect(() => {
     // Compare the current prop value with the previous prop value
     if (props.isActive !== prevPropValueRef.current) {
       if (props.isActive && props.isPlayer) {
-        ping() 
+        diceAnimation() 
       } else if (!props.isActive && !props.isPlayer){
-        ping()
+        diceAnimation()
       }
       // Perform actions or logic based on the prop change
     }
@@ -51,7 +46,7 @@ function DiceRolling(props) {
    //run on first render 
     useEffect(() => {
      if(props.isPlayer){
-      ping()
+      diceAnimation()
      }
     }, []);
   ;
@@ -61,7 +56,6 @@ function DiceRolling(props) {
       <div className="dice-rolling-container">
         <div className={`dice${dice} dice-roll-box`}></div>
       </div>
-      <button onClick={ping}>click</button>
     </div>
   );
 }

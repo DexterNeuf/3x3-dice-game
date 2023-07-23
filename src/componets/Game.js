@@ -10,14 +10,22 @@ function Game() {
   const [opponentBoardValues, changeOBV] = useState([
     0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
+  const [playerScore, changePlayerScore] = useState(0)
+  const [oppenentScore, changeOpponentScore] = useState(0)
   const [lastAdded, newAdd] = useState([0, 0]);
- 
 
+  const isFilled  =  () => {
+    const indexOfZero = playerBoardValues.indexOf(0)
+    if ( indexOfZero === -1){
+      console.log('filled');
+    }else if( indexOfZero === 0){
+    }
     
+  }
+  isFilled()
   return (
     <div className="Game">
       <fieldset
-        disabled={!isPlayerTurn}
         className={`player-space`}
         style={{
           filter:
@@ -42,6 +50,8 @@ function Game() {
             changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
             newAdd={(lastAdded) => newAdd(lastAdded)}
             changePBV={(playerBoardValues) => changePBV(playerBoardValues)}
+            changePlayerScore={(playerScore) => changePlayerScore(playerScore)}
+            playerScore ={playerScore}
             playerArr={playerBoardValues}
             playerTurn={isPlayerTurn}
             diceRolled={isDiceRolled}
@@ -52,6 +62,7 @@ function Game() {
             changeTurn={(isPlayerTurn) => changeTurn(isPlayerTurn)}
             newAdd={(lastAdded) => newAdd(lastAdded)}
             changeOBV={(opponentBoardValues) => changeOBV(opponentBoardValues)}
+            changePlayerScore={(playerScore) => changePlayerScore(playerScore)}
             opponentArr={opponentBoardValues}
             playerTurn={isPlayerTurn}
             diceRolled={isDiceRolled}
@@ -60,7 +71,6 @@ function Game() {
         </div>
       </fieldset>
       <fieldset
-        disabled={isPlayerTurn}
         className="oppenent-space"
         style={{
           filter:

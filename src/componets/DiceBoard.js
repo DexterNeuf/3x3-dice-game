@@ -5,39 +5,6 @@ import React, {
 function DiceBoard(props) {
   const [isActive, setActive] = useState('true');
 
-  const handleMouseOver = (e) => {
-    let selectedRow = e.target.parentElement.id;
-    if (selectedRow) {
-      if (selectedRow === 'row1') {
-        //find the first block thats isnt filled
-        let obj = row1.find((o) => o.isFilled === true);
-        let i = row1.indexOf(obj);
-        // first block isnt filled
-        if (!obj) {
-          changeDiceValue(
-            row1.map((x) => {
-              if (x.position === `1.0`) {
-                x.value = props.diceNumber;
-                x.isHovered = true;
-              }
-              return { ...x };
-            })
-          );
-        } else {
-          // if it isnt the first find the index of the last filled obj
-          changeDiceValue(
-            row1.map((x) => {
-              if (x.position === `1.${i}`) {
-                x.value = props.diceNumber;
-                x.isHovered = true;
-              }
-              return { ...x };
-            })
-          );
-        }
-      }
-    }
-  };
   const IsPlayerDiv = (props) => {
     return (
       <div
@@ -60,7 +27,9 @@ function DiceBoard(props) {
           width: '50px',
           height: '50px',
         }}
-      ></div>
+
+      >
+      </div>
     );
   };
 
@@ -123,6 +92,7 @@ function DiceBoard(props) {
       }
     }
   };
+
   const addDiceToRow = (rowNum) => {
     changeDiceValue(
       row1.map((x) => {
@@ -248,47 +218,54 @@ function DiceBoard(props) {
     }
 
   // gets value of the dice in row and adds it too new array
-    const extractValuesFromRow = () =>{
+  const extractValuesFromRow = () =>{
       const valuesArray = [];
        for (const obj of row) {
            if (obj.hasOwnProperty('value')) {
            valuesArray.push(obj['value']);
          }
-       }
+        }
        return valuesArray;
      }
 
     //checks to see if there are duplicates and does math 
-    const findDups = () => {
-       let rowValue = extractValuesFromRow()
-      if(rowValue[0] === rowValue[1] && rowValue[0] === rowValue[2]){
-        rowValue = [rowValue[0]*3, rowValue[1]*3, rowValue[2]*3,]
-      }else if(rowValue[0] === rowValue[1]) {
-        rowValue = [rowValue[0]*2, rowValue[1]*2, rowValue[2],]
-      }else if(rowValue[1] === rowValue[2]) {
-        rowValue = [rowValue[0], rowValue[1]*2, rowValue[2]*2,] 
+  const findDups = () => {
+      let valueArray = extractValuesFromRow()
+    if(valueArray[0] !== 0){
+      if(valueArray[0] === valueArray[1] && valueArray[0] === valueArray[2]){
+        valueArray = [valueArray[0]*3, valueArray[1]*3, valueArray[2]*3,]
+      }else if(valueArray[0] === valueArray[1]) {
+        valueArray = [valueArray[0]*2, valueArray[1]*2, valueArray[2],]
+      }else if(valueArray[1] === valueArray[2] && valueArray [1] !== 0) {
+        valueArray = [valueArray[0], valueArray[1]*2, valueArray[2]*2,]
       }
+    }
       return(
-        rowValue
+        valueArray
       )
     }
-      const calculatedRow = findDups()
+    const calculatedRow = findDups()
       return(
         <p>{calculatedRow[0] + calculatedRow[1] + calculatedRow[2]}</p> 
       )
+
+ }
+
+ const changeProp = (arr) => {
+  const newScore  = (arr[0] + arr[1] + arr[2])
+  console.log(newScore);
+  props.changePlayerScore(newScore)
  }
 
   return (
     <div>
       <div className="player-board">
-        <h1></h1>
+        <p>{props.playerScore}</p>
         <div className={`player-row`}>
           <container
             id="row1"
             className={`player-row ${isActive ? 'hoverable' : ''}`}
             onClick={addDice1}
-            // onMouseEnter={handleMouseOver}
-            // onMouseOut={handleMouseOut}
           >
             {row1[2].isFilled === true || row1[2].isHovered === true ? (
               <div className={`dice${row1[2].value}`}></div>
@@ -344,7 +321,6 @@ function DiceBoard(props) {
             id="row3"
             className={`player-row ${isActive ? 'hoverable' : ''}`}
             onClick={addDice3}
-            onMouseOver={handleMouseOver}
           >
             {row3[2].isFilled === true || row3[2].isHovered === true ? (
               <div className={`dice${row3[2].value}`}></div>
